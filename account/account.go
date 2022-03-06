@@ -1,6 +1,9 @@
 package account
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+)
 
 type Account struct {
 	owner   string
@@ -27,4 +30,16 @@ func (account *Account) Withdraw(amount int) error {
 	}
 	account.balance -= amount
 	return nil
+}
+
+func (account *Account) ChangeOwner(newOwner string) {
+	account.owner = newOwner
+}
+
+func (account Account) Owner() string {
+	return account.owner
+}
+
+func (account Account) String() string {
+	return fmt.Sprintf("Owner: %s\nAmount: %d", account.owner, account.balance)
 }
