@@ -21,11 +21,34 @@ import (
 
 // mydict example
 func main() {
-	d := mydict.Dictionary{"first": "First Word"}
-	definition, err := d.Search("second")
+	word := "first"
+	definition := "First Word"
+
+	d := mydict.Dictionary{word: definition}
+	definition, err := d.Search(word)
 	if err != nil {
 		log.Fatal(err)
 	} else {
 		fmt.Println(definition)
 	}
+
+	word = "second"
+	definition = "Second Word"
+
+	err = d.Add(word, definition)
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		fmt.Println(d)
+	}
+
+	err = d.Update(word, "First Word")
+	if err != nil {
+		log.Fatal(err)
+	} else {
+		fmt.Println(d)
+	}
+
+	d.Delete(word)
+	fmt.Println(d)
 }
